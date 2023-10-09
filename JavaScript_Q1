@@ -1,0 +1,30 @@
+function reverseWords(sentence) {
+    const words = sentence.split(' ');
+    const reversedWords = words.map(word => {
+        const lastChar = word.slice(-1);
+        const punctuation = /[.,!?;:]/;
+        let reversedWord = word;
+        if (punctuation.test(lastChar)) {
+            const wordWithoutPunctuation = word.slice(0, -1);
+            reversedWord = reverseString(wordWithoutPunctuation) + lastChar;
+        } else {
+            reversedWord = reverseString(word);
+        }
+
+        return reversedWord;
+    });
+
+    const reversedSentence = reversedWords.join(' ');
+
+    return reversedSentence;
+}
+
+function reverseString(str) {
+    return str.split('').reverse().join('');
+}
+
+
+const inputSentence = "This is a sunny day";
+const reversedSentence = reverseWords(inputSentence);
+console.log(reversedSentence); // Output: "sihT si a ynnus yad"
+
